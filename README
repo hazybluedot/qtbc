@@ -1,3 +1,9 @@
 Basic Qt GUI interface to the bc calculator program.
 
 The bc utility must be installed for this to function properly.
+
+# INTSALL
+Make sure qt4 is installed
+apt-get install qt4-designer
+
+and bc
