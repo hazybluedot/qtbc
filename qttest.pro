@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-TARGET = qttest
+TARGET = qtbc
 TEMPLATE = app
 
 
