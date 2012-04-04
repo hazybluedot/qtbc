@@ -5,13 +5,12 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    istream(stdin, QIODevice::ReadOnly)
 {
     ui->setupUi(this);
-    calc.start("bc", QStringList() << "-q");
-    calc.waitForStarted();
-    calc.write("scale=4\n");
-    bool status = connect(&calc, SIGNAL(readyReadStandardOutput()), this, SLOT(on_calc_readyRead()));
+    pNot = new QSocketNotifier(STDIN_FILENO, QSocketNotifier::Read, this);
+    bool status = connect(pNot, SIGNAL(activated(int)), this, SLOT(onData()));
 }
 
 MainWindow::~MainWindow()
@@ -27,12 +26,14 @@ void MainWindow::on_pushButton_calc_clicked()
     QString input = ui->lineEdit->text();
     input.append("\n");
     std::cerr << "Writing " << input.toStdString() << " to process stdin. I think." << std::endl;
-    calc.write(input.toLocal8Bit());
+    std::cout << input.toStdString() << std::endl;
     line = input.trimmed().append("=");
 }
 
-void MainWindow::on_calc_readyRead()
+void MainWindow::onData()
 {
-    std::cerr << "Got a readyReadStandardOutput signal!" << std::endl;
-    ui->textBrowser->append(line.append(calc.readAllStandardOutput()).trimmed());
+  std::cerr << "Got a SocketNotifier signal!" << std::endl;
+  line.append(istream.readLine());
+  ui->textBrowser->append(line.toLocal8Bit());
+  line = "";
 }

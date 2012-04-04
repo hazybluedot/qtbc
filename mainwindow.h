@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QProcess>
+#include <QSocketNotifier>
+#include <QTextStream>
 
 namespace Ui {
 class MainWindow;
@@ -18,12 +20,14 @@ public:
     
 private slots:
     void on_pushButton_calc_clicked();
-    void on_calc_readyRead();
+    void onData();
 
 private:
     Ui::MainWindow *ui;
     QProcess calc;
     QString line;
+    QSocketNotifier *pNot;
+    QTextStream istream;
 };
 
 #endif // MAINWINDOW_H
