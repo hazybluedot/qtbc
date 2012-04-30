@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QProcess>
@@ -18,6 +19,11 @@ MainWindow::~MainWindow()
     calc.close();
     calc.waitForFinished();
     delete ui;
+}
+
+void MainWindow::setInitialEq(const QString& init)
+{
+    ui->lineEdit->setText(init);
 }
 
 void MainWindow::on_pushButton_calc_clicked()

@@ -18,6 +18,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     
+    void setInitialEq(const QString&);
+
 private slots:
     void on_pushButton_calc_clicked();
     void onData();

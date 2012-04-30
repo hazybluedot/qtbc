@@ -1,4 +1,4 @@
-CXX_FLAGS := -O2 -DNDEBUG -Wall -g -march=core2 -std=c++0x
+CXX_FLAGS := -O2 -DNDEBUG -Wall -g -march=core2 -std=c++11
 CXX       := g++
 VPATH	:= dispatcher gui
 INSTALL_DIR := ./
