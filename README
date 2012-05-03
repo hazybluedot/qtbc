@@ -3,9 +3,7 @@ Basic Qt GUI interface to the bc calculator program.
 The bc utility must be installed for this to function properly.
 
 BUILD
-qmake
 make
-make -f Makefile2
 
 RUN
 ./qtbc
