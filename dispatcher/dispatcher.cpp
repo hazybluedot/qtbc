@@ -33,9 +33,9 @@ int main(int argc, const char* argv[])
     } else {
     /* parent process */
     close(fd[1]);
-    dup2(fd[0],0);
+    dup2(fd[0],STDIN_FILENO);
     close(fd[2]);
-    dup2(fd[3],1);
+    dup2(fd[3],STDOUT_FILENO);
     execlp("./qtbc-gui", "qtbc-gui", NULL);
     perror("execlp qtbc-gui");
     exit(1);
