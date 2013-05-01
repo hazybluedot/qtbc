@@ -1,4 +1,4 @@
 all: qtbc
 
-qtbc: dispatcher.cpp
-	g++ -Wall -g -o qtbc dispatcher.cpp
+qtbc: dispatcher.o
+	g++ -Wall -g -o qtbc $^
