@@ -12,9 +12,10 @@ qtbc-gui: qttest.pro mainwindow.ui
 	$(MAKE) -C gui
 	mv gui/$@ ${INSTALL_DIR}
 
+.PHONY : qtbc
 qtbc:
 	$(MAKE) -C dispatcher
-	mv dispatcher/$@ ${INSTALL_DIR}
+	cp dispatcher/$@ ${INSTALL_DIR}
 
 clean:
 	-$(MAKE) clean -C gui
